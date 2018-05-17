@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue Test</title>
+    <style>
+        body {
+            color: azure;
+            background-color: #333333;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Hello World</h1>
+
+    <div id="app">
+        <h1 v-bind:title="title">
+            {{ message }}
+        </h1>
+        <input type="text" v-model="message">
+        <p>The value of this input is: {{ message }}</p>
+        <hr>
+        <p>{{ nextMes }}</p>
+        <button v-on:click="reverseString">Reverse!</button>
+    </div>
+
+    <!-- v-bind is an import kind of communication -->
+    <!-- v-model is a 2 way communication -->
+
+    <div id="box">
+        <span v-if="seen">Now you can see me</span>
+
+        <ul v-if="todos">
+            <li v-for="todo in todos" v-if="todo.text">
+                {{ todo.text }}
+            </li>
+        </ul>
+    </div>
+
+    <div id="thing">
+
+
+    <ol>
+        <todo-item v-for="item in todos" v-bind:todo="item"></todo-item>
+    </ol>
+
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+
+    <script>
+        Vue.component('todo-item', {
+            props: ['todo'],
+            template: '<li>{{ todo.text }}</li>'
+        });
+
+        var app = new Vue({
+            el: "#app",
+            data: {
+                message: "Hi",
+                title: "this is title",
+                nextMes: "Stuff to reverse"
+            },
+            methods: {
+                reverseString: function() {
+                    console.log("Here I am!");
+                    this.nextMes = this.nextMes.split("").reverse().join('');
+                }
+            }
+        });
+
+        var box = new Vue ({
+            el: "#box",
+            data: {
+                seen: true,
+                todos: [
+                    {title: "learn HTML"},
+                    {text: "learn JavaScript"},
+                    {text: "learn PHP"}
+                ]
+            }
+        });
+
+        var thing = new Vue ({
+            el: "#thing",
+            data: {
+                todos: [
+                    { text: "blah" },
+                    { text: "muah" },
+                    { text: "hmmm" }
+                ]
+            }
+        });
+
+
+    </script>
+
+</body>
+</html>
