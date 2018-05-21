@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+
+    <h1>{{ greeting }}</h1>
+
+    <h2 v-if="condition">{{ statement }}</h2>
+
+    <ul>
+        <li v-for="thing in arrayOfThings">{{ thing }}</li>
+    </ul>
+
+    <input type="text" v-model="newThing">
+    <button @click="addingName">Add New Number</button>
+
+</div>
+
+<hr>
+
+<div id="kansas">
+
+    <input type="number" min="0" max="30" value="0" v-model="counter" @change="addingParags">
+
+
+    <div v-if="condition">
+        <p v-for="item in counter">We're not in Kansas anymore</p>
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+
+<script>
+//    var app = new Vue({
+//        el: "#app",
+//        data: {
+//            greeting: "Hello World",
+//            condition: true,
+//            statement: "It is seen",
+//            arrayOfThings: [1, 2, 4, 77, 567],
+//            newThing: ""
+//        },
+//        methods: {
+//            addingName: () => {
+//                app.arrayOfThings.push(app.newThing)
+//            }
+//        }
+//    });
+
+    var kansas = new Vue({
+        el: "#kansas",
+        data: {
+            counter: "0",
+            condition: false
+        },
+        methods: {
+            addingParags: function() {
+                kansas.counter = parseInt(kansas.counter);
+                (kansas.counter > 0) ? kansas.condition = true : kansas.condition = false;
+            }
+        }
+    })
+
+</script>
+
+</body>
+</html>
